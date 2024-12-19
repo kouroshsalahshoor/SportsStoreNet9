@@ -1,22 +1,27 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
+using SportsStore.Repository.IRepository;
 
 namespace SportsStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IStoreRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //private readonly ILogger<HomeController> _logger;
 
-        public IActionResult Index()
+        public HomeController(IStoreRepository repository)
         {
-            return View();
+            _repository = repository;
         }
+        //public HomeController(ILogger<HomeController> logger, IStoreRepository repository)
+        //{
+        //    _logger = logger;
+        //    _repository = repository;
+        //}
+
+        public IActionResult Index() => View(_repository.Products);
 
         public IActionResult Privacy()
         {
