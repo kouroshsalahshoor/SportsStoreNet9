@@ -37,5 +37,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+SeedData.EnsurePopulated(app);
 
 app.Run();
