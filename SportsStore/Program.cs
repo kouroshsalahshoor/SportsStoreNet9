@@ -15,6 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(opts => {
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,6 +50,8 @@ app.MapDefaultControllerRoute();
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}")
 //    .WithStaticAssets();
+
+app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
 
