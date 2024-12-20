@@ -17,6 +17,9 @@ builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,6 +36,9 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.UseStaticFiles();
+app.UseSession();
 
 app.MapControllerRoute("catpage",
 "{category}/Page{productPage:int}",
