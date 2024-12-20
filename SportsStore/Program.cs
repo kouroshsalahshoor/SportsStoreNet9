@@ -32,10 +32,15 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+app.MapControllerRoute("pagination",
+"Products/Page{productPage}",
+new { Controller = "Home", action = "Index" });
+app.MapDefaultControllerRoute();
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}")
+//    .WithStaticAssets();
 
 SeedData.EnsurePopulated(app);
 
